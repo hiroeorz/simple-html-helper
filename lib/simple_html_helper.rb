@@ -14,7 +14,9 @@ class String
     "\"" => "&quot;",
   }
 
-  @@sanitize_config = Sanitize::Config::RELAXED
+  @@sanitize_config = Sanitize::Config::RELAXED.
+    merge({:add_attributes => {"a" => {"target" => "_blank"}}})
+
   @@use_sanitize = true
 
 
@@ -63,9 +65,9 @@ class String
       sanitize
   end
 
-  def to_html_link
+  def to_html_link(target = "_blank")
     self.gsub(/(https?\:[\w\.\~\-\/\?\&\+\=\:\@\%\;\#\%]+)/) {
-      "<a href=\"#{$1}\">#{$1}</a>"
+      "<a href=\"#{$1}\" target=\"#{target}\">#{$1}</a>"
     }
   end
 

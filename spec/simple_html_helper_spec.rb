@@ -1,3 +1,4 @@
+
 require File.join(File.dirname(__FILE__), 'spec_helper')
 
 describe "SimpleHtmlHelper" do
@@ -10,7 +11,7 @@ please check this url
 
 EOF
 
-    http_text = "hello&nbsp;this&nbsp;is&nbsp;my&nbsp;blog<br /><br />my&nbsp;home&nbsp;pege&nbsp;is&nbsp;<a href=\"http://my.home.page/blogs/20090515\">http://my.home.page/blogs/20090515</a><br />please&nbsp;check&nbsp;this&nbsp;url<br /><br />"
+    http_text = "hello&nbsp;this&nbsp;is&nbsp;my&nbsp;blog<br /><br />my&nbsp;home&nbsp;pege&nbsp;is&nbsp;<a href=\"http://my.home.page/blogs/20090515\" target=\"_blank\">http://my.home.page/blogs/20090515</a><br />please&nbsp;check&nbsp;this&nbsp;url<br /><br />"
 
     text.to_html.should == http_text
   end
@@ -37,13 +38,13 @@ EOF
 
   it "should replace url -> url link" do
     "helo http://google.co.jp world".to_html_link.should ==
-      "helo <a href=\"http://google.co.jp\">http://google.co.jp</a> world"
+      "helo <a href=\"http://google.co.jp\" target=\"_blank\">http://google.co.jp</a> world"
 
     "helohttp://google.co.jp world".to_html_link.should ==
-      "helo<a href=\"http://google.co.jp\">http://google.co.jp</a> world"
+      "helo<a href=\"http://google.co.jp\" target=\"_blank\">http://google.co.jp</a> world"
 
     "helo\nhttp://google.co.jp\nworld".to_html_link.should ==
-      "helo\n<a href=\"http://google.co.jp\">http://google.co.jp</a>\nworld"
+      "helo\n<a href=\"http://google.co.jp\" target=\"_blank\">http://google.co.jp</a>\nworld"
   end
 
   it "should sanitize not allowed tag" do
