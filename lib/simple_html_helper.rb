@@ -92,4 +92,34 @@ class String
       gsub(/\n/, "<br />")
   end
 
+  def to_short(name_length = 20, continue_string = "...")
+    if self.jlength <= name_length
+      return self.dup
+    end
+
+    new_string = ""
+
+    self.each_char do |c|
+      new_string << c
+
+      break if new_string.jlength >= name_length
+    end
+
+    return new_string << continue_string
+  end
+
+  def to_under_score
+    self.
+      gsub(/^[A-Z]+/) {|e| e.downcase}.
+      gsub(/[a-z][A-Z]+/) {|e| e[0, 1] + "_" + e[1..-1].downcase}
+  end
+
+end
+
+class NilClass
+
+  def to_html
+    return ""
+  end
+
 end
