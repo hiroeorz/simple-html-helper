@@ -11,8 +11,13 @@ please check this url
 
 EOF
 
+    replaced_text = "hello&nbsp;this&nbsp;is&nbsp;my&nbsp;blog\n\nmy&nbsp;home&nbsp;pege&nbsp;is&nbsp;http://my.home.page/blogs/20090515\nplease&nbsp;check&nbsp;this&nbsp;url\n\n"
+
+
     http_text = "hello&nbsp;this&nbsp;is&nbsp;my&nbsp;blog<br /><br />my&nbsp;home&nbsp;pege&nbsp;is&nbsp;<a href=\"http://my.home.page/blogs/20090515\" target=\"_blank\">http://my.home.page/blogs/20090515</a><br />please&nbsp;check&nbsp;this&nbsp;url<br /><br />"
 
+
+    text.to_html_special_char.should == replaced_text
     text.to_html.should == http_text
   end
 
@@ -49,9 +54,17 @@ EOF
 
   it "should sanitize not allowed tag" do
     text = "hello<script type='text/javascript'>alert('script')</script>wolrd"
-    text.sanitize.should == "helloalert(&#39;script&#39;)wolrd"
+    text.sanitize.should == "helloalert('script')wolrd"
 
     text = "<embed src='../images/htmq.swf' />"
     text.sanitize.should == ""
   end
+
+  it "should replace special character" do
+    "a b c".to_html_special_char.should == "a&nbsp;b&nbsp;c"
+    "<>".to_html_special_char.should == "&lt;&gt;"
+    "\"".to_html_special_char.should == "&quot;"
+   
+  end
+
 end

@@ -1,11 +1,10 @@
-begin
-  require "rubygems"
-rescue LoadError
-end
+require "rubygems"
+gem "sanitize"
+#require "sanitize"
 
-
-require "sanitize"
-
+#
+# TODO test
+#
 class String
   @@html_replace_target = {
     "<" => "&lt;",
@@ -57,12 +56,11 @@ class String
   end
   
   def to_html
-    self.
+    self.sanitize
       to_html_amp.
       to_html_special_char.
       to_html_br.
-      to_html_link.
-      sanitize
+      to_html_link
   end
 
   def to_html_link(target = "_blank")

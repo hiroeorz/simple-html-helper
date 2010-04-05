@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "simple-html-helper"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{todo is not eixst}
     gem.email = "hiroe.orz@gmail.com"
     gem.homepage = "http://github.com/hiroeorz/simple-html-helper"
     gem.authors = ["hiroeorz"]
