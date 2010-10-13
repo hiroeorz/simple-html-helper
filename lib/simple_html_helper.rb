@@ -13,7 +13,8 @@ class String
     "\"" => "&quot;",
   }
 
-  @@sanitize_config = Sanitize::Config::RELAXED.
+  relaxed = Sanitize::Config::RELAXED.dup
+  @@sanitize_config = relaxed.
     merge({:add_attributes => {"a" => {"target" => "_blank"}}})
 
   @@use_sanitize = true
