@@ -1,4 +1,4 @@
-require 'spec'
+require 'rspec'
 require "rubygems"
 gem "sanitize"
 require "sanitize"
